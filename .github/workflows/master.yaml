@@ -3,6 +3,7 @@ name: Master branch workflow
 run-name: "${{ github.actor }} made ${{ github.event_name }} on ${{ github.head_ref || github.ref_name }}"
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
@@ -37,7 +38,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
       - name: Run tests
-        run: ,/gradlew test
+        run: ./gradlew test
 
   docker:
     runs-on: ubuntu-latest
