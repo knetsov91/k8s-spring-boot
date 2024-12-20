@@ -71,7 +71,7 @@ jobs:
       - uses: actions/download-artifact@master
         with:
           name: jar-file
-          path: build/libs/app.jar
+          path: "${GITHUB_WORKSPACE}/build/libs/app.jar"
 
       - run: |
           echo ${GITHUB_WORKSPACE}
