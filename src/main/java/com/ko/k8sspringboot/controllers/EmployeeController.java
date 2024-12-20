@@ -1,6 +1,6 @@
 package com.ko.k8sspringboot.controllers;
 
-import com.ko.k8sspringboot.models.dto.EmployeeOldestDto;
+import com.ko.k8sspringboot.models.dto.EmployeeDto;
 import com.ko.k8sspringboot.models.entity.EmployeeEntity;
 import com.ko.k8sspringboot.repository.EmployeeRepository;
 import com.ko.k8sspringboot.service.EmployeeService;
@@ -15,23 +15,23 @@ import java.util.List;
 public class EmployeeController {
 
     private final EmployeeService employeeService;
-    private EmployeeRepository employeeRepository;
 
-    public EmployeeController(EmployeeService employeeService, EmployeeRepository employeeRepository) {
+
+    public EmployeeController(EmployeeService employeeService ) {
         this.employeeService = employeeService;
-        this.employeeRepository = employeeRepository;
     }
 
     @GetMapping("/oldtest")
-    public EmployeeOldestDto getOldestEmployee() {
-        EmployeeOldestDto oldestEmployee = employeeService.getOldestEmployee();
+    public EmployeeDto getOldestEmployee() {
+        EmployeeDto oldestEmployee = employeeService.getOldestEmployee();
         return oldestEmployee;
 
     }
 
     @GetMapping
-    public List<EmployeeEntity> getEmployees() {
-        List<EmployeeEntity> all = employeeRepository.findAll();
+    public List<EmployeeDto> getEmployees() {
+        List<EmployeeDto> all = employeeService.getEmployees();
         return all;
     }
+
 }
