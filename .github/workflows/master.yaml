@@ -3,6 +3,7 @@ name: Master branch workflow
 run-name: "${{ github.actor }} made ${{ github.event_name }} on ${{ github.head_ref || github.ref_name }}"
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
