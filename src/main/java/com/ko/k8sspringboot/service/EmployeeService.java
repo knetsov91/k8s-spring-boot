@@ -8,4 +8,6 @@ public interface EmployeeService {
 
     public EmployeeDto getOldestEmployee();
     public List<EmployeeDto> getEmployees();
+
+    public List<EmployeeDto> getAllEmployeesByProject(int projectId);
 }
