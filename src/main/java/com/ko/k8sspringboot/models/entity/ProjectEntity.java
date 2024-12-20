@@ -18,7 +18,7 @@ public class ProjectEntity {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Column(name="is_finised")
+    @Column(name="is_finished")
     private boolean isFinished;
 
     @Column(name="start_date")
