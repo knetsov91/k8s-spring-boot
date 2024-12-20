@@ -75,7 +75,7 @@ jobs:
       - run: |
           echo $GITHUB_WORKSPACE
           pwd
-          ls -l *
+          ls -l `pwd`
           ls -l build/libs
       - name: Build and push
         uses: docker/build-push-action@v6
