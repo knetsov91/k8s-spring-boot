@@ -59,10 +59,6 @@ jobs:
 #          pwd
 #          ls -l *
 
-      - run: |
-          echo $GITHUB_WORKSPACE
-          pwd
-          ls -l *
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
@@ -80,6 +76,12 @@ jobs:
         with:
           name: jar-file
           path: build/libs/app.jar
+
+      - run: |
+          echo $GITHUB_WORKSPACE
+          pwd
+          ls -l *
+          ls -l build/libs
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
