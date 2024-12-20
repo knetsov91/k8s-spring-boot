@@ -71,7 +71,7 @@ jobs:
       - uses: actions/download-artifact@master
         with:
           name: jar-file
-          path: "${GITHUB_WORKSPACE}/build/libs/app.jar"
+          path: build/libs/app.jar
 
       - run: |
           echo ${GITHUB_WORKSPACE}
@@ -81,5 +81,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
+          context: .
           push: true
           tags: knetsov91/spring-boot-rest:latest
