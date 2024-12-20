@@ -26,7 +26,7 @@ jobs:
       - uses: actions/upload-artifact@master
         with:
           name: jar-file
-          path: build/libs/*.jar app.jar
+          path: mv build/libs/*.jar app.jar
 
   test:
     runs-on: ubuntu-latest
