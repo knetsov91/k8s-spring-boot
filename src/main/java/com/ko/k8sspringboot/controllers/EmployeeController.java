@@ -4,9 +4,8 @@ import com.ko.k8sspringboot.models.dto.EmployeeDto;
 import com.ko.k8sspringboot.models.entity.EmployeeEntity;
 import com.ko.k8sspringboot.repository.EmployeeRepository;
 import com.ko.k8sspringboot.service.EmployeeService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.modelmapper.ModelMapper;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,8 +16,9 @@ public class EmployeeController {
     private final EmployeeService employeeService;
 
 
-    public EmployeeController(EmployeeService employeeService ) {
+    public EmployeeController(EmployeeService employeeService, ModelMapper modelMapper) {
         this.employeeService = employeeService;
+
     }
 
     @GetMapping("/oldtest")
@@ -33,5 +33,12 @@ public class EmployeeController {
         List<EmployeeDto> all = employeeService.getEmployees();
         return all;
     }
+    @GetMapping("/{projectId}")
+    public List<EmployeeDto> getemployeesByProject(@PathVariable  int projectId) {
+        return employeeService.getAllEmployeesByProject(projectId);
+
+
+    }
+
 
 }
