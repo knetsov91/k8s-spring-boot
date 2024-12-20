@@ -83,4 +83,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: knetsov91/spring-boot-rest:latest
+          tags: docker.io/knetsov91/spring-boot-rest:latest
