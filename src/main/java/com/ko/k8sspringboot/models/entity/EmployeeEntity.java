@@ -19,6 +19,9 @@ public class EmployeeEntity {
     @Column
     private int age;
 
+    @ManyToOne
+    @JoinColumn(name = "project_id", referencedColumnName = "id")
+    private ProjectEntity project;
 
     public Long getId() {
         return id;
