@@ -1,6 +1,6 @@
 package com.ko.k8sspringboot.models.dto;
 
-public class EmployeeOldestDto {
+public class EmployeeDto {
 
     private int age;
     private String firstName;
@@ -11,7 +11,7 @@ public class EmployeeOldestDto {
         return age;
     }
 
-    public EmployeeOldestDto setAge(int age) {
+    public EmployeeDto setAge(int age) {
         this.age = age;
         return this;
     }
@@ -20,7 +20,7 @@ public class EmployeeOldestDto {
         return firstName;
     }
 
-    public EmployeeOldestDto setFirstName(String firstName) {
+    public EmployeeDto setFirstName(String firstName) {
         this.firstName = firstName;
         return this;
     }
@@ -29,7 +29,7 @@ public class EmployeeOldestDto {
         return lastName;
     }
 
-    public EmployeeOldestDto setLastName(String lastName) {
+    public EmployeeDto setLastName(String lastName) {
         this.lastName = lastName;
         return this;
     }
