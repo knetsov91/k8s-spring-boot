@@ -54,11 +54,15 @@ jobs:
     needs: test
     steps:
       - uses: actions/checkout@v4
+      - run: |
+          echo $GITHUB_WORKSPACE
+          pwd
+          ls -l
       - uses: actions/download-artifact@master
         with:
           name: jar-file
           path: build/libs/app.jar
-        run: |
+      - run: |
           echo $GITHUB_WORKSPACE
           pwd
           ls -l
