@@ -3,6 +3,7 @@ plugins {
     id 'org.springframework.boot' version '3.4.0'
     id 'io.spring.dependency-management' version '1.1.6'
     id "org.sonarqube" version "6.0.1.5171"
+
 }
 
 group = 'com.ko'
@@ -13,12 +14,20 @@ java {
         languageVersion = JavaLanguageVersion.of(17)
     }
 }
+sonar {
+    properties {
+        property "sonar.login", "$sonarLogin"
+        property "sonar.password", "$sonarPassword"
+        property "sonar.host.url", "http://localhost:9001"
+    }
+}
 jar {
     enabled = false
 }
 repositories {
     mavenCentral()
 }
+
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
