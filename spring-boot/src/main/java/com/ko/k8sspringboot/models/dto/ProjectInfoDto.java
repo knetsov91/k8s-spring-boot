@@ -1,40 +1,23 @@
 package com.ko.k8sspringboot.models.dto;
 
+import com.ko.k8sspringboot.models.enums.ProjectState;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class ProjectInfoDto {
 
-    private String description;
-
     private String name;
-
+    private String description;
+    private ProjectState projectState;
     private LocalDate startDate;
+    private LocalDate endDate;
+    private LocalDate createdAt;
 
-    public String getDescription() {
-        return description;
-    }
-
-    public ProjectInfoDto setDescription(String description) {
-        this.description = description;
-        return this;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public ProjectInfoDto setName(String name) {
-        this.name = name;
-        return this;
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public ProjectInfoDto setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-        return this;
-    }
 }
