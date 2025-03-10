@@ -36,4 +36,11 @@ public class ProjectServiceImpl implements ProjectService {
         ProjectEntity projectEntity = projectRepository.save(projectEntityMap);
         return modelMapper.map(projectEntity, ProjectInfoDto.class);
     }
+
+    @Override
+    public ProjectInfoDto getProject(Long id) {
+        return projectRepository.findById(id)
+                .map(p -> modelMapper.map(p, ProjectInfoDto.class))
+                .orElseThrow(() -> new RuntimeException("Project with id " + id + " not found"));
+    }
 }
