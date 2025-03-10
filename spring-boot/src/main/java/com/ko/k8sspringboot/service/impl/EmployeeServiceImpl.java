@@ -24,28 +24,29 @@ public class EmployeeServiceImpl implements EmployeeService {
     public EmployeeDto getOldestEmployee() {
         Optional<EmployeeEntity> oldestEmployee = employeeRepository.findOldestEmployee();
         EmployeeEntity employeeEntity = oldestEmployee.orElseThrow(RuntimeException::new);
-
-        return map(employeeEntity);
+        EmployeeDto map = modelMapper.map(employeeEntity, EmployeeDto.class);
+        return map;
     }
 
     @Override
     public List<EmployeeDto> getEmployees() {
-        return employeeRepository.findAll().stream().map(e -> map(e)).toList();
+        return employeeRepository.findAll()
+                .stream()
+                .map(e -> modelMapper.map(e, EmployeeDto.class))
+                .toList();
+    }
+
+    @Override
+    public EmployeeDto create(EmployeeDto employeeDto) {
+        EmployeeEntity map = modelMapper.map(employeeDto, EmployeeEntity.class);
+        EmployeeEntity save = employeeRepository.save(map);
+        return modelMapper.map(save, EmployeeDto.class);
     }
 
     @Override
     public List<EmployeeDto> getAllEmployeesByProject(int projectId) {
-        return employeeRepository.findByProject_Id(projectId)
-                .stream()
-                .map(employee -> modelMapper.map(employee, EmployeeDto.class))
-                .toList();
-
-    }
+        return List.of();
 
 
-    private static EmployeeDto map(EmployeeEntity entity) {
-        return new EmployeeDto().setAge(entity.getAge())
-                .setFirstName(entity.getFirstName())
-                .setLastName(entity.getLastName());
     }
 }
