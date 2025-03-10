@@ -1,9 +1,12 @@
 package com.ko.k8sspringboot.models.entity;
 
+import com.ko.k8sspringboot.models.enums.ProjectState;
 import jakarta.persistence.*;
-
+import lombok.Data;
 import java.time.LocalDate;
+import java.util.Set;
 
+@Data
 @Entity
 @Table(name="projects")
 public class ProjectEntity {
@@ -12,60 +15,22 @@ public class ProjectEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Column(name="is_finished")
-    private boolean isFinished;
+    @Column(name="project_state", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private ProjectState projectState;
 
-    @Column(name="start_date")
+    @Column(name="start_date", nullable = false)
     private LocalDate startDate;
 
-    public Long getId() {
-        return id;
-    }
+    @Column(name="end_date")
+    private LocalDate endDate;
 
-    public ProjectEntity setId(Long id) {
-        this.id = id;
-        return this;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public ProjectEntity setName(String name) {
-        this.name = name;
-        return this;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public ProjectEntity setDescription(String description) {
-        this.description = description;
-        return this;
-    }
-
-    public boolean isFinished() {
-        return isFinished;
-    }
-
-    public ProjectEntity setFinished(boolean finished) {
-        isFinished = finished;
-        return this;
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public ProjectEntity setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-        return this;
-    }
+    @ManyToMany(mappedBy = "projects")
+    private Set<EmployeeEntity> employees;
 }
