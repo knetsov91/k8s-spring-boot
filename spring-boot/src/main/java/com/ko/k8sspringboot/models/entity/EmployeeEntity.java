@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -39,12 +38,9 @@ public class EmployeeEntity {
     private int age;
 
     @ManyToMany
-    @JoinTable(name="project_course",
+    @JoinTable(name="projects_employees",
         joinColumns = @JoinColumn(name="employee_id"),
         inverseJoinColumns = @JoinColumn(name="project_id")
     )
     private Set<ProjectEntity> projects;
-
-//    @OneToOne(mappedBy = "project")
-//    private UserEntity user;
 }
