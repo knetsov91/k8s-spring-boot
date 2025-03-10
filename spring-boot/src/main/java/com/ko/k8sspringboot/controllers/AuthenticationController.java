@@ -4,13 +4,15 @@ import com.ko.k8sspringboot.models.dto.LoginResponse;
 import com.ko.k8sspringboot.models.dto.LoginUserDto;
 import com.ko.k8sspringboot.models.dto.RegisterUserDto;
 import com.ko.k8sspringboot.models.entity.UserEntity;
+import com.ko.k8sspringboot.security.AuthenticationDetails;
 import com.ko.k8sspringboot.service.AuthenticationService;
 import com.ko.k8sspringboot.service.JwtService;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequestMapping("/auth")
 public class AuthenticationController {
@@ -26,20 +28,21 @@ public class AuthenticationController {
         this.modelMapper = modelMapper;
     }
 
-
     @PostMapping("/register")
     public ResponseEntity<RegisterUserDto> register(@RequestBody RegisterUserDto registerUserDto) {
         RegisterUserDto register = authenticationService.register(registerUserDto);
         return ResponseEntity.ok(register);
     }
 
-
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody LoginUserDto loginUserDto) throws Exception {
-        UserEntity registerUser = authenticationService.login(loginUserDto);
+        UserEntity loginUser = authenticationService.login(loginUserDto);
 
-        LoginUserDto map = modelMapper.map(registerUser, LoginUserDto.class);
-        String jwtToken = jwtService.generateToken(registerUser);
+        AuthenticationDetails authenticationDetails = AuthenticationDetails.builder()
+                .email(loginUserDto.getEmail())
+                .role(loginUser.getUserRole())
+                .build();
+        String jwtToken = jwtService.generateToken(authenticationDetails);
         LoginResponse loginResponse = new LoginResponse().setToken(jwtToken).setExpiresIn(jwtService.getJwtExpiration());
         return  ResponseEntity.ok(loginResponse);
     }
