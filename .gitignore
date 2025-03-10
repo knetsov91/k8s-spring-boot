@@ -1,0 +1,64 @@
+spring-boot/HELP.md
+spring-boot/.gradle
+spring-boot/build/
+spring-boot/!gradle/wrapper/gradle-wrapper.jar
+spring-boot/!**/src/main/**/build/
+spring-boot/!**/src/test/**/build/
+spring-boot/### STS ###
+spring-boot/.apt_generated
+spring-boot/.classpath
+spring-boot/.factorypath
+spring-boot/.project
+spring-boot/.settings
+spring-boot/.springBeans
+spring-boot/.sts4-cache
+spring-boot/bin/
+spring-boot/!**/src/main/**/bin/
+spring-boot/!**/src/test/**/bin/
+
+spring-boot/### IntelliJ IDEA ###
+spring-boot/.idea
+spring-boot/*.iws
+spring-boot/*.iml
+spring-boot/*.ipr
+spring-boot/out/
+spring-boot/!**/src/main/**/out/
+spring-boot/!**/src/test/**/out/
+
+spring-boot/### NetBeans ###
+spring-boot/nbproject/private/
+spring-boot/nbbuild/
+spring-boot/dist/
+spring-boot/nbdist/
+spring-boot/.nb-gradle/
+
+spring-boot/### VS Code ###
+spring-boot/.vscode/
+spring-boot/k8s/secret.yaml
+spring-boot/.env
+
+
+# Logs
+frontend/logs
+frontend/*.log
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/pnpm-debug.log*
+frontend/lerna-debug.log*
+
+frontend/node_modules
+frontend/dist
+frontend/dist-ssr
+frontend/*.local
+
+frontend/# Editor directories and files
+frontend/.vscode/*
+frontend/!.vscode/extensions.json
+frontend/.idea
+frontend/.DS_Store
+frontend/*.suo
+frontend/*.ntvs*
+frontend/*.njsproj
+frontend/*.sln
+frontend/*.sw?
