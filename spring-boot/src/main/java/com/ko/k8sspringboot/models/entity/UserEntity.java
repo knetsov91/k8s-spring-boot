@@ -2,18 +2,19 @@ package com.ko.k8sspringboot.models.entity;
 
 import com.ko.k8sspringboot.models.enums.UserRole;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import java.time.LocalDate;
-import java.util.Collection;
-import java.util.List;
 import java.util.UUID;
 
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="users")
 public class UserEntity {
@@ -22,10 +23,7 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(nullable = false, name="full_name")
-    private String fullName;
-
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)
@@ -42,5 +40,10 @@ public class UserEntity {
     @Column(nullable = false)
     private UserRole userRole;
 
+    @Column(nullable = false)
+    private boolean isActive;
 
+    @OneToOne
+    @JoinColumn(name="employee_id")
+    private EmployeeEntity employee;
 }
