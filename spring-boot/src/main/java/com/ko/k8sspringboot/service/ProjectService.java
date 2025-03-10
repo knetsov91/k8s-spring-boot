@@ -12,5 +12,5 @@ import java.util.List;
 public interface ProjectService {
     List<ProjectInfoDto> getProjects();
     ProjectInfoDto create(ProjectCreateDto projectCreateDto);
-
+    ProjectInfoDto getProject(Long id);
 }
