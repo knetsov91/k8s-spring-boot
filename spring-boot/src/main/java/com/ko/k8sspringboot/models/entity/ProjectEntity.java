@@ -25,7 +25,10 @@ public class ProjectEntity {
     @Enumerated(EnumType.STRING)
     private ProjectState projectState;
 
-    @Column(name="start_date", nullable = false)
+    @Column(nullable = false)
+    private LocalDate createdAt;
+
+    @Column(name="start_date")
     private LocalDate startDate;
 
     @Column(name="end_date")
