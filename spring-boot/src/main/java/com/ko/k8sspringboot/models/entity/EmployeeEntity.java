@@ -1,14 +1,27 @@
 package com.ko.k8sspringboot.models.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.Set;
+import java.util.UUID;
+
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 @Entity
 @Table(name="employees")
 public class EmployeeEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     @Column(name="first_name")
     private String firstName;
@@ -17,41 +30,21 @@ public class EmployeeEntity {
     private String lastName;
 
     @Column
+    private LocalDateTime hireDate;
+
+    @Column(nullable = false)
+    private BigDecimal salary;
+
+    @Column(nullable = false)
     private int age;
 
-    @ManyToOne
-    @JoinColumn(name = "project_id", referencedColumnName = "id")
-    private ProjectEntity project;
+    @ManyToMany
+    @JoinTable(name="project_course",
+        joinColumns = @JoinColumn(name="employee_id"),
+        inverseJoinColumns = @JoinColumn(name="project_id")
+    )
+    private Set<ProjectEntity> projects;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
+//    @OneToOne(mappedBy = "project")
+//    private UserEntity user;
 }
