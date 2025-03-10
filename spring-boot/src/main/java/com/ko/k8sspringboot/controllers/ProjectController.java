@@ -1,15 +1,18 @@
 package com.ko.k8sspringboot.controllers;
 
 import com.ko.k8sspringboot.models.dto.EmployeeDto;
+import com.ko.k8sspringboot.models.dto.ProjectCreateDto;
 import com.ko.k8sspringboot.models.dto.ProjectInfoDto;
+import com.ko.k8sspringboot.security.AuthenticationDetails;
 import com.ko.k8sspringboot.service.EmployeeService;
 import com.ko.k8sspringboot.service.ProjectService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/projects")
 public class ProjectController {
@@ -21,9 +24,17 @@ public class ProjectController {
     }
 
     @GetMapping
-    public List<ProjectInfoDto> getProjects() {
+    public List<ProjectInfoDto> getProjects(@AuthenticationPrincipal AuthenticationDetails authenticationDetails ) {
         List<ProjectInfoDto> all = projectService.getProjects();
+        log.info("requested");
         return all;
     }
+
+    @PostMapping
+    public ProjectInfoDto create(@RequestBody ProjectCreateDto projectCreateDto) {
+        ProjectInfoDto projectInfoDto = projectService.create(projectCreateDto);
+        return projectInfoDto;
+    }
+
 
 }
