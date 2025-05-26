@@ -1,6 +1,13 @@
-FROM openjdk:17
-WORKDIR /app
-ARG JAR_FILE=build/libs/*.jar
-COPY ${JAR_FILE} /app/app.jar
+from amazoncorretto:17-alpine-jdk as builder
 
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+WORKDIR /app
+
+COPY . .
+RUN chmod +x ./gradlew
+RUN ./gradlew bootJar
+
+FROM amazoncorretto:17-alpine-jdk
+WORKDIR /app
+COPY --from=builder /app/build/libs/*jar app.jar
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
