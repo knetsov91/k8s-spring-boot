@@ -37,8 +37,5 @@ public class EmployeeController {
     public List<EmployeeDto> getemployeesByProject(@PathVariable  int projectId) {
         return employeeService.getAllEmployeesByProject(projectId);
 
-
     }
-
-
 }

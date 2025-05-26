@@ -46,7 +46,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<EmployeeDto> getAllEmployeesByProject(int projectId) {
         return List.of();
-
+//                employeeRepository.findByProject_Id(projectId)
+//                .stream()
+//                .map(employee -> modelMapper.map(employee, EmployeeDto.class))
+//                .toList();
 
     }
 }
