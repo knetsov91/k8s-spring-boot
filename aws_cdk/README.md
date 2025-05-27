@@ -1,4 +1,4 @@
-<h1>AWS CDK</h1>
+<h1>Cloudformation IaaC for provisioning AWS resources </h1>
 <p>Project is deployed in AWS using AWS's CloudFormation IaaC tool. 
 For easier management and provisioning of resource is used <b>AWS Cloud Development Kit(CDK)</b>.
 It uses different programming languages in this project JavaScript to create, destroy and manage 
