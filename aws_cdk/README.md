@@ -1,14 +1,8 @@
-# Welcome to your CDK TypeScript project
-
-This is a blank project for CDK development with TypeScript.
-
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
-
-## Useful commands
-
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `npx cdk deploy`  deploy this stack to your default AWS account/region
-* `npx cdk diff`    compare deployed stack with current state
-* `npx cdk synth`   emits the synthesized CloudFormation template
+<h1>Cloudformation IaaC for provisioning AWS resources </h1>
+<p>Project is deployed in AWS using AWS's CloudFormation IaaC tool. 
+For easier management and provisioning of resource is used <b>AWS Cloud Development Kit(CDK)</b>.
+It uses different programming languages in this project JavaScript to create, destroy and manage 
+AWS resources. The project uses <b>AWS Fargate</b> serverless engine for running containers.
+<b>AWS Elastic Load Balancing(ELB)</b> is used to control and route external traffic to containerized application. 
+Security groups are used to control traffic to AWS resources - containers where application is running. 
+</p>
