@@ -26,6 +26,7 @@ sonar {
         property "sonar.login", "$sonarLogin"
         property "sonar.password", "$sonarPassword"
         property "sonar.host.url", "http://localhost:9001"
+        property "sonar.projectKey", "k8s-spring-boot"
     }
 }
 jar {
