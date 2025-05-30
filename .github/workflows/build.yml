@@ -2,7 +2,8 @@ name: Build
 on:
   push:
     branches:
-      - master # the name of your main branch
+      - master
+      - dev
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
@@ -18,7 +19,7 @@ jobs:
         with:
           java-version: 17
       - name: Cache SonarQube packages
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
