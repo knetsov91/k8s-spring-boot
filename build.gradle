@@ -17,6 +17,9 @@ java {
         languageVersion = JavaLanguageVersion.of(17)
     }
 }
+jacocoTestReport {
+    dependsOn test
+}
 test {
     finalizedBy(jacocoTestReport)
 }
