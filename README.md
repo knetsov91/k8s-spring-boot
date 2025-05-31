@@ -28,3 +28,11 @@ used Amazon Elastic Kubernetes(EKS).
     <li>CI with GitHub Actions</li>
     <li>React JS</li>
 </ul> 
+
+<h2>Encountered problems</h2>
+<ul>
+    <li>
+        <p>Problem: @ExceptionHandler(BadCredentialsException.class) throws <b>org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation</b></p>
+        <p>Solution: Add getters and setters to the returned DTO in order to be serializable.</p>    
+    </li>
+</ul>
