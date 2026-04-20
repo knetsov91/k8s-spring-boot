@@ -11,6 +11,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### [Unreleased]
 
+### [1.2.0] - 2025-05-30
+
+#### Added
+- SonarQube GitHub Actions workflow for static code analysis on master
+- JaCoCo code coverage configuration in Gradle
+- Multi-stage Docker image using Alpine for reduced image size
+- `addEmployeeToProject()` in `ProjectService`
+
+#### Changed
+- Project restructured — Spring Boot, K8s manifests, AWS CDK, and `docker-compose.yaml` moved to repository root
+- README updated with summary and tech stack sections
+
+#### Infrastructure
+- SonarQube `projectKey` property added in `build.gradle`
+
 ### [1.1.0] - 2025-03-11
 
 #### Added
