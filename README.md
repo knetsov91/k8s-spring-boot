@@ -161,6 +161,14 @@ DOCKER_USERNAME  DockerHub username
 DOCKER_PASSWORD  DockerHub password
 ```
 
+## Deployment
+
+The application is deployed on AWS using Fargate containers behind an Application Load Balancer.
+Infrastructure is provisioned as code using AWS CDK (TypeScript).
+The Docker image is pulled from DockerHub during deployment.
+
+For full infrastructure details and deployment instructions see [aws_cdk/README.md](./aws_cdk/README.md).
+
 ## Encountered problems
 
 - **Problem:** `@ExceptionHandler(BadCredentialsException.class)` throws `org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation`
