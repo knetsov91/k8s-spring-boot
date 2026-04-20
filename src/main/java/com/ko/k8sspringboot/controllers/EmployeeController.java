@@ -21,7 +21,7 @@ public class EmployeeController {
 
     }
 
-    @GetMapping("/oldtest")
+    @GetMapping("/oldest")
     public EmployeeDto getOldestEmployee() {
         EmployeeDto oldestEmployee = employeeService.getOldestEmployee();
         return oldestEmployee;

@@ -2,17 +2,10 @@
 
 ## Summary
 
-Application is implemented following REST API architectural style using Spring Boot Web project.
-Data is persisted in MySQL RDBMS and interaction with it is done via Hibernate ORM using
-Spring Boot Data JPA project. Spring Security framework along with JWT are used for authentication and authorization of endpoints.
-Project is developed on multiple branches using Git as version control system.
-Application is containerized using Docker and image is pushed to repository in DockerHub for further usage during deployment.
-For improved code quality and automation of build, test and DockerHub image upload processes is used GitHub Actions
-where CI pipelines are run for different branches when code is committed. AWS is used for
-deployment (additional information [here](./aws_cdk/README.md)) of the application image from DockerHub.
-Kubernetes cluster is used in development environment to run containerized application
-so that it can be scaled when needed. In future for deployment of the application in production environment can be
-used Amazon Elastic Kubernetes (EKS).
+A RESTful project management API built with Spring Boot, secured with JWT authentication.
+Employees and projects are persisted in MySQL via Spring Data JPA. The application is containerized
+with Docker, deployed on AWS Fargate via CDK, and monitored for code quality with SonarQube.
+CI/CD pipelines are managed with GitHub Actions. A React frontend is included as a separate module.
 
 ## Tech stack
 
@@ -122,7 +115,7 @@ POST /api/v1/auth/login        Login and receive a JWT token
 ### Employees
 ```
 GET  /employees                Get all employees
-GET  /employees/oldtest        Get the oldest employee
+GET  /employees/oldest         Get the oldest employee
 GET  /employees/{projectId}    Get employees by project
 ```
 
