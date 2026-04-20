@@ -11,6 +11,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### [Unreleased]
 
+### [1.1.0] - 2025-03-11
+
+#### Added
+- `POST /projects` endpoint for project creation
+- `GET /projects` endpoint
+- `ProjectEntity`, `ProjectState` enum, `ProjectCreateDto`, `ProjectInfoDto`
+- `createdAt` field on `ProjectEntity`
+- `addEmployeeToProject()` in `ProjectService`
+- `UserRole` enumeration
+
+#### Changed
+- `UserEntity` primary key changed from Long to UUID
+- `UserDetails` implementation extracted to dedicated class
+- CORS port sourced from `application.properties`
+
+#### Fixed
+- `POST /login` — `UserDetails` implementation correctly embedded in JWT
+- 403 error for authenticated users — `doFilter()` call added in JWT filter
+- Join table name corrected in `EmployeeEntity`
+
 ### [1.0.0] - 2024-12-30
 
 #### Added
