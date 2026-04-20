@@ -35,6 +35,20 @@ services:
       - sonar_db:/var/lib/postgresql
       - sonar_db_data:/var/lib/postgresql/data
 
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8086:8086"
+    environment:
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      HOST: mysql
+      JWT_KEY: ${JWT_KEY}
+    depends_on:
+      - mysql
+
   mysql:
     image: mysql
     ports:
