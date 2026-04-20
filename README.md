@@ -84,6 +84,25 @@ docker-compose up sonarqube
 ./gradlew sonar
 ```
 
+## Domain
+
+The application manages employees and projects within an organization.
+Users register to gain access to the API and are each linked to an employee record.
+Employees can be assigned to projects, and projects track their current state throughout their lifecycle.
+
+### Entities
+```
+User        id (UUID), email, password, role (ADMIN | USER)
+Employee    id (UUID), name, age
+Project     id, name, state (ACTIVE | INACTIVE), createdAt
+```
+
+### Relationships
+
+- **User** has one **Employee** (created automatically on registration)
+- **Employee** belongs to one **Project**
+- **Project** has many **Employees**
+
 ## API
 
 All endpoints except `/api/v1/auth/*` require a valid JWT token in the `Authorization: Bearer <token>` header.
