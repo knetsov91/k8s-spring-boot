@@ -130,6 +130,37 @@ GET  /projects/{id}                                     Get project by ID
 POST /projects/{projectId}/employees/{employeeId}       Add employee to project
 ```
 
+## CI/CD
+
+GitHub Actions pipelines are configured for two branches:
+
+**dev branch** — runs on every push:
+```
+build → test
+```
+
+**master branch** — runs on every push:
+```
+build → test → Docker image build → push to DockerHub
+```
+
+**SonarQube** — runs on every push to master and on pull requests:
+```
+build → static code analysis → report to SonarQube
+```
+
+Required GitHub Actions secrets:
+```
+DB_USER          Database username
+DB_PASSWORD      Database password
+HOST             Database host
+JWT_KEY          JWT secret key
+SONAR_TOKEN      SonarQube authentication token
+SONAR_HOST_URL   SonarQube server URL
+DOCKER_USERNAME  DockerHub username
+DOCKER_PASSWORD  DockerHub password
+```
+
 ## Encountered problems
 
 - **Problem:** `@ExceptionHandler(BadCredentialsException.class)` throws `org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation`
