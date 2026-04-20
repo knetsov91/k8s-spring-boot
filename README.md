@@ -26,6 +26,10 @@ used Amazon Elastic Kubernetes (EKS).
 - Kubernetes
 - CI with GitHub Actions
 - React JS
+- Gradle
+- SonarQube
+- JaCoCo
+- Swagger / OpenAPI
 
 ## Running locally
 
