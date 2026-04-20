@@ -27,6 +27,63 @@ used Amazon Elastic Kubernetes (EKS).
 - CI with GitHub Actions
 - React JS
 
+## Running locally
+
+### Prerequisites
+- Java 17
+- Docker and Docker Compose
+- Node.js (for frontend)
+
+### Environment variables
+
+The following environment variables are required. Set them in your shell before running the application:
+
+```env
+# MySQL root password (used by Docker to initialize the container)
+MYSQL_PASSWORD=<your_mysql_root_password>
+
+# Spring Boot database connection (connects as root — same value as MYSQL_PASSWORD for local dev)
+DB_USER=root
+DB_PASSWORD=<your_mysql_root_password>
+HOST=localhost
+
+# Secret key used to sign and verify JWT tokens (min. 32 characters recommended)
+JWT_KEY=<your_jwt_secret>
+```
+
+> **Note:** The app connects to MySQL as root for local development. A dedicated application user should be used in production.
+
+In CI/CD these are stored as GitHub Actions secrets.
+
+### 1. Start the database
+
+```bash
+docker-compose up mysql
+```
+
+### 2. Run the API
+
+```bash
+./gradlew bootRun
+```
+
+API runs on `http://localhost:8086`.
+
+### 3. Run the frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+### Running SonarQube analysis locally
+
+```bash
+docker-compose up sonarqube
+./gradlew sonar
+```
+
 ## Encountered problems
 
 - **Problem:** `@ExceptionHandler(BadCredentialsException.class)` throws `org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation`
