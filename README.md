@@ -84,6 +84,33 @@ docker-compose up sonarqube
 ./gradlew sonar
 ```
 
+## API
+
+All endpoints except `/api/v1/auth/*` require a valid JWT token in the `Authorization: Bearer <token>` header.
+
+Swagger UI is available at `http://localhost:8086/swagger-ui`.
+
+### Authentication
+```
+POST /api/v1/auth/register     Register a new user
+POST /api/v1/auth/login        Login and receive a JWT token
+```
+
+### Employees
+```
+GET  /employees                Get all employees
+GET  /employees/oldtest        Get the oldest employee
+GET  /employees/{projectId}    Get employees by project
+```
+
+### Projects
+```
+GET  /projects                                          Get all projects
+POST /projects                                          Create a project
+GET  /projects/{id}                                     Get project by ID
+POST /projects/{projectId}/employees/{employeeId}       Add employee to project
+```
+
 ## Encountered problems
 
 - **Problem:** `@ExceptionHandler(BadCredentialsException.class)` throws `org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation`
