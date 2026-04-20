@@ -11,6 +11,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### [Unreleased]
 
+### [1.3.0] - 2026-02-05
+
+#### Added
+- API versioning for `EmployeeController` endpoints (`/api/v1/employees`)
+- API versioning for `AuthenticationController` endpoints (`/api/v1/auth`)
+- Swagger UI with OpenAPI support
+- JWT-authenticated and unauthenticated access configuration for Swagger endpoints
+- Global exception handling for `BadCredentialsException` via `@ControllerAdvice`
+
+#### Changed
+- JWT logic moved from `AuthenticationController` into `AuthenticationService`
+- `AuthenticationService.login()` return type changed to `LoginResponse` DTO
+
 ### [1.2.0] - 2025-05-30
 
 #### Added
