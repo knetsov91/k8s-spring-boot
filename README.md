@@ -74,6 +74,16 @@ npm install
 npm run dev
 ```
 
+### Running with Docker Compose
+
+To run the full stack (API + database) as Docker containers:
+
+```bash
+docker-compose up app
+```
+
+The API will be available at `http://localhost:8086`.
+
 ### Running SonarQube analysis locally
 
 ```bash
