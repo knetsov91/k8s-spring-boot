@@ -60,4 +60,28 @@ class EmployeeServiceImplTest {
         assertEquals(dto, result.get(0));
         verify(modelMapper, times(1)).map(entity, EmployeeDto.class);
     }
+
+    @Test
+    void getEmployees_callsMapOncePerEntity_whenMultipleEmployeesExist() {
+        EmployeeEntity entity1 = EmployeeEntity.builder()
+                .age(30).firstName("John").lastName("Doe")
+                .salary(BigDecimal.valueOf(50000)).build();
+        EmployeeEntity entity2 = EmployeeEntity.builder()
+                .age(25).firstName("Jane").lastName("Smith")
+                .salary(BigDecimal.valueOf(60000)).build();
+
+        EmployeeDto dto1 = EmployeeDto.builder().age(30).firstName("John").build();
+        EmployeeDto dto2 = EmployeeDto.builder().age(25).firstName("Jane").build();
+
+        when(employeeRepository.findAll()).thenReturn(List.of(entity1, entity2));
+        when(modelMapper.map(entity1, EmployeeDto.class)).thenReturn(dto1);
+        when(modelMapper.map(entity2, EmployeeDto.class)).thenReturn(dto2);
+
+        List<EmployeeDto> result = employeeService.getEmployees();
+
+        assertEquals(2, result.size());
+        verify(modelMapper, times(1)).map(entity1, EmployeeDto.class);
+        verify(modelMapper, times(1)).map(entity2, EmployeeDto.class);
+        verifyNoMoreInteractions(modelMapper);
+    }
 }
