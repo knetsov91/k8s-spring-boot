@@ -74,6 +74,16 @@ npm install
 npm run dev
 ```
 
+### Running with Docker Compose
+
+To run the full stack (API + database) as Docker containers:
+
+```bash
+docker-compose up app
+```
+
+The API will be available at `http://localhost:8086`.
+
 ### Running SonarQube analysis locally
 
 ```bash
@@ -114,9 +124,9 @@ POST /api/v1/auth/login        Login and receive a JWT token
 
 ### Employees
 ```
-GET  /employees                Get all employees
-GET  /employees/oldest         Get the oldest employee
-GET  /employees/{projectId}    Get employees by project
+GET  /api/v1/employees                Get all employees
+GET  /api/v1/employees/oldest         Get the oldest employee
+GET  /api/v1/employees/{projectId}    Get employees by project
 ```
 
 ### Projects
