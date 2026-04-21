@@ -137,6 +137,26 @@ GET  /projects/{id}                                     Get project by ID
 POST /projects/{projectId}/employees/{employeeId}       Add employee to project
 ```
 
+## Testing
+
+### Unit Tests
+
+Unit tests are written using JUnit 5 and Mockito. Dependencies are mocked to isolate
+the logic of the class under test.
+
+Current test coverage:
+
+- `EmployeeServiceImpl` — `getEmployees()`
+
+Run tests locally:
+
+```bash
+./gradlew test
+```
+
+Coverage reports are generated with JaCoCo after each test run and available at:
+`build/reports/jacoco/test/html/index.html`
+
 ## CI/CD
 
 GitHub Actions pipelines are configured for two branches:
