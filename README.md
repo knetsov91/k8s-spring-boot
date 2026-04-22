@@ -146,7 +146,7 @@ the logic of the class under test.
 
 Current test coverage:
 
-- `EmployeeServiceImpl` — `getEmployees()`
+- `EmployeeServiceImpl` — `getEmployees()`, `create()`
 
 Run tests locally:
 
