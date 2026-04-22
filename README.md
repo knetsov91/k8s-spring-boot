@@ -148,7 +148,7 @@ Current test coverage:
 
 - `EmployeeServiceImpl`
   - `getEmployees()` — empty list, employees exist, map called once per entity
-  - `create()` — returns mapped DTO of saved entity
+  - `create()` — returns mapped DTO of saved entity, modelMapper called correctly (DTO→Entity, saved Entity→DTO)
 
 Run tests locally:
 
