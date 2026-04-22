@@ -2,6 +2,7 @@ package com.ko.k8sspringboot;
 
 import com.ko.k8sspringboot.models.dto.EmployeeDto;
 import com.ko.k8sspringboot.models.entity.EmployeeEntity;
+import java.util.UUID;
 import com.ko.k8sspringboot.repository.EmployeeRepository;
 import com.ko.k8sspringboot.service.impl.EmployeeServiceImpl;
 import org.junit.jupiter.api.Test;
@@ -82,6 +83,64 @@ class EmployeeServiceImplTest {
         assertEquals(2, result.size());
         verify(modelMapper, times(1)).map(entity1, EmployeeDto.class);
         verify(modelMapper, times(1)).map(entity2, EmployeeDto.class);
+        verifyNoMoreInteractions(modelMapper);
+    }
+
+    @Test
+    void create_returnsMappedDto_whenEmployeeIsSaved() {
+        EmployeeDto inputDto = EmployeeDto.builder()
+                .age(30).firstName("John").lastName("Doe")
+                .salary(BigDecimal.valueOf(50000)).build();
+
+        EmployeeEntity mappedEntity = EmployeeEntity.builder()
+                .age(30).firstName("John").lastName("Doe")
+                .salary(BigDecimal.valueOf(50000)).build();
+
+        EmployeeEntity savedEntity = EmployeeEntity.builder()
+                .id(UUID.randomUUID())
+                .age(30).firstName("John").lastName("Doe")
+                .salary(BigDecimal.valueOf(50000)).build();
+
+        EmployeeDto expectedDto = EmployeeDto.builder()
+                .id(savedEntity.getId())
+                .age(30).firstName("John").lastName("Doe")
+                .salary(BigDecimal.valueOf(50000)).build();
+
+        when(modelMapper.map(inputDto, EmployeeEntity.class)).thenReturn(mappedEntity);
+        when(employeeRepository.save(mappedEntity)).thenReturn(savedEntity);
+        when(modelMapper.map(savedEntity, EmployeeDto.class)).thenReturn(expectedDto);
+
+        EmployeeDto result = employeeService.create(inputDto);
+
+        assertEquals(expectedDto, result);
+    }
+
+    @Test
+    void create_callsModelMapperTwice_withCorrectArguments() {
+        EmployeeDto inputDto = EmployeeDto.builder()
+                .age(30).firstName("John").lastName("Doe")
+                .salary(BigDecimal.valueOf(50000)).build();
+
+        EmployeeEntity mappedEntity = EmployeeEntity.builder()
+                .age(30).firstName("John").lastName("Doe")
+                .salary(BigDecimal.valueOf(50000)).build();
+
+        EmployeeEntity savedEntity = EmployeeEntity.builder()
+                .id(UUID.randomUUID())
+                .age(30).firstName("John").lastName("Doe")
+                .salary(BigDecimal.valueOf(50000)).build();
+
+        EmployeeDto expectedDto = EmployeeDto.builder()
+                .id(savedEntity.getId()).build();
+
+        when(modelMapper.map(inputDto, EmployeeEntity.class)).thenReturn(mappedEntity);
+        when(employeeRepository.save(mappedEntity)).thenReturn(savedEntity);
+        when(modelMapper.map(savedEntity, EmployeeDto.class)).thenReturn(expectedDto);
+
+        employeeService.create(inputDto);
+
+        verify(modelMapper, times(1)).map(inputDto, EmployeeEntity.class);
+        verify(modelMapper, times(1)).map(savedEntity, EmployeeDto.class);
         verifyNoMoreInteractions(modelMapper);
     }
 }

@@ -146,7 +146,9 @@ the logic of the class under test.
 
 Current test coverage:
 
-- `EmployeeServiceImpl` — `getEmployees()`
+- `EmployeeServiceImpl`
+  - `getEmployees()` — empty list, employees exist, map called once per entity
+  - `create()` — returns mapped DTO of saved entity, modelMapper called correctly (DTO→Entity, saved Entity→DTO)
 
 Run tests locally:
 
